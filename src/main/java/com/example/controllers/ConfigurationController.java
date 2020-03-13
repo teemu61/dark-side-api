@@ -33,6 +33,6 @@ public class ConfigurationController {
     public String saveConfiguration(Configuration configuration) {
         configurationService.saveConfiguration(configuration);
         log.info("redirect to show configuration information ...");
-        return "redirect:/api/configuration/show";
+        return "redirect:/api/configuration/edit";
     }
 }
