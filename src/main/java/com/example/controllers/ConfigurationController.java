@@ -21,17 +21,6 @@ public class ConfigurationController {
         this.configurationService = configurationService;
     }
 
-    @RequestMapping(value = "/api/configuration/show", method = RequestMethod.GET)
-    public String list(Model model) {
-
-        Configuration configuration = configurationService.getConfigurationById(1);
-        log.info("configuration from db has id: " +configuration.getId());
-
-        model.addAttribute("configuration", configuration);
-        log.info("show configuration ...");
-        return "configurationshow";
-    }
-
     @RequestMapping("api/configuration/edit")
     public String edit(Model model) {
         Configuration configuration = configurationService.getConfigurationById(1);
