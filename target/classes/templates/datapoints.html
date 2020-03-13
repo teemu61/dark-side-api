@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>datapoints</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -55,33 +63,19 @@
             chart.draw(data, options);
         }
     });
-    
 
 
 </script>
-<head lang="en">
-    <title>CGI Tests</title>
-    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
-</head>
+
 <body>
-<div id="curve_chart" style="width: 900px; height: 500px"></div>
-<!--<div class="container">
-    &lt;!&ndash;/*/ <th:block th:include="fragments/header :: header"></th:block> /*/&ndash;&gt;
+
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
     <div>
         <h2>Daily datapoints</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>Time</th>
-                <th>Highest Temperature</th>
-                <th>Lowest Temperature</th>
-            </tr>
-            <tr th:each="datapoint : ${datapoints}">
-                <td th:text="${datapoint.time}">First name</td>
-                <td th:text="${datapoint.apparentTemperatureHigh}">Last name</td>
-                <td th:text="${datapoint.apparentTemperatureLow}">Last name</td>
-            </tr>
-        </table>
     </div>
-</div>-->
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+
+</div>
 </body>
 </html>
