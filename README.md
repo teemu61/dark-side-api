@@ -44,18 +44,21 @@
 Documentation
 -------------
 
-Suunnittele / toteuta liiketoimintaluokat (http://c2.com/cgi/wiki?DomainObject) pieneen järjestelmään, jossa ylläpidetään luonnollisen henkilön perustietoja (tyyliin Väestötietojärjestelmä, https://dvv.fi/vaestotietojarjestelma  )
+Sijoitustutkimus Coding Task
 
-·         Java back-end
+This is very open topic and the goal is to measure how professionally you implement it. Have fun!
 
-·         termien kieli suomi tai englanti
+Implement a weather monitoring service based on listed requirements. Programming language, runtime environment and packages are free for you to choose as long as we execute the app.
 
-·         max. viisi luokkaa, max. kymmenen attribuuttia / luokka
+Requirements:
 
-·         mahdollisten liiketoimintametodien toiminnallisuutta ei tarvitse toteuttaa loppuun
+·         Application is long lived - once launched is should keep monitoring weather data until user terminates it.
 
-·         ei tietokantakäsittelyä (JPA tms.)
+·         User can configure one or more locations to poll for temperature and the polling interval for each location.
 
-·         ei tarvita käynnistyvää sovellusta, vain liiketoimintaluokat (ja tarvittavat apuluokat)
+·         User can also configure alerts for per location by specifying target low and high (or both!)
 
-·         toiminnallisuuksia voi soveltuvin osin demota vaikka Junit-testeillä
+·         Configuration should be done by uend user, in other words not inside program code.
+
+·         Application should user Dark Sky API to obtain weather data https:/darksky.net/dev
+
