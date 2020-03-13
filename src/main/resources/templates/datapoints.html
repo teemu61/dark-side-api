@@ -25,9 +25,8 @@
                 var dataArray = [];
     
 	    		$.each(result, function(i, obj) {
-                    var d = new Date(obj.time);
-			        console.log("time is: ", d + ", temp is: " +Math.round(obj.tempHi) );
-                    dataArray.push([ d, obj.tempHi ]);
+                    var date = new Date(obj.time);
+                    dataArray.push([ date, obj.tempHi, obj.tempLo ]);
                 });
 
 				google.charts.setOnLoadCallback(function() {
@@ -42,11 +41,12 @@
 
             var data = new google.visualization.DataTable();
             data.addColumn('datetime', 'Time');
-            data.addColumn('number', 'Temperature');
+            data.addColumn('number', 'Highest Temperature');
+            data.addColumn('number', 'Lowest Temperature');
             data.addRows(dataArray);
 
             var options = {
-                title: 'Company Performance',
+                title: 'Temperature',
                 curveType: 'function',
                 legend: { position: 'bottom' }
             };

@@ -4,6 +4,7 @@ public class Datapoint {
 
     private long time;
     private Double tempHi;
+    private Double tempLo;
 
     public long getTime() {
         return time;
@@ -19,5 +20,13 @@ public class Datapoint {
 
     public void setTempHi(Double tempHi) {
         this.tempHi = tempHi;
+    }
+
+    public Double getTempLo() {
+        return tempLo;
+    }
+
+    public void setTempLo(Double tempLo) {
+        this.tempLo = tempLo;
     }
 }

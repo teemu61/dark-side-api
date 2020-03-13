@@ -1,10 +1,12 @@
 package com.example.bootstrap;
 
 import com.example.client.DarkSkyJacksonClient;
+import com.example.domain.Configuration;
 import com.example.domain.Person;
 import com.example.domain.Address;
 
 import com.example.domain.Education;
+import com.example.repositories.ConfigurationRepository;
 import com.example.repositories.EducationRepository;
 import com.example.repositories.PersonRepository;
 
@@ -27,16 +29,27 @@ public class ProductLoader implements ApplicationListener<ContextRefreshedEvent>
 
     private PersonRepository personRespository;
     private EducationRepository educationRepository;
+    private ConfigurationRepository configurationRepository;
     private Logger log = LogManager.getLogger(ProductLoader.class);
 
     @Autowired
-    public void setProductRepository(PersonRepository personRepository, EducationRepository educationRepository) {
+    public void setProductRepository(PersonRepository personRepository, EducationRepository educationRepository, ConfigurationRepository configurationRepository) {
         this.personRespository = personRepository;
         this.educationRepository = educationRepository;
+        this.configurationRepository = configurationRepository;
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+
+        Configuration configuraition = new Configuration();
+        configuraition.setId(1);
+        configuraition.setApikey("292f0b952e1422d5e0d02eceb2773f3d");
+        configuraition.setLongitude("24.93545");
+        configuraition.setLattitude("20.16952");
+        configurationRepository.save(configuraition);
+        Configuration feachedConfiguration = configurationRepository.findById(1).get();
+        log.info("configuration from db has id: " +feachedConfiguration.getId());
 
         Person jussi = new Person();
         jussi.setFirstName("Jussi");

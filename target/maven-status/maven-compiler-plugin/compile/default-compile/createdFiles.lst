@@ -1,5 +1,8 @@
+com/example/controllers/ConfigurationController.class
 com/example/client/DarkSkyJacksonClient.class
 com/example/domain/Address.class
+com/example/repositories/ConfigurationRepository.class
+com/example/services/ConfigurationServiceImpl.class
 com/example/controllers/IndexController.class
 com/example/services/PersonService.class
 com/example/services/WeatherService.class
@@ -10,6 +13,7 @@ com/example/services/WeatherServiceImpl.class
 com/example/domain/Education.class
 com/example/services/EducationServiceImpl.class
 com/example/controllers/EducationController.class
+com/example/domain/Configuration.class
 com/example/configuration/SecurityConfiguration.class
 com/example/repositories/EducationRepository.class
 com/example/controllers/PersonController.class
@@ -19,4 +23,5 @@ com/example/configuration/WebConfiguration.class
 com/example/repositories/PersonRepository.class
 com/example/controllers/WeatherRestController.class
 com/example/services/PersonServiceImpl.class
+com/example/services/ConfigurationService.class
 com/example/domain/Datapoint.class

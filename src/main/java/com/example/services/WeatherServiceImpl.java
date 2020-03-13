@@ -1,6 +1,7 @@
 package com.example.services;
 
 import com.example.bootstrap.ProductLoader;
+import com.example.domain.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class WeatherServiceImpl implements WeatherService{
     @Autowired
     ProductLoader productLoader;
 
+    @Autowired
+    ConfigurationService configurationService;
+
     @Value("${com.example.apikey}")
     String apikey;
 
@@ -33,7 +37,10 @@ public class WeatherServiceImpl implements WeatherService{
     public List<DailyDataPoint> getDailyDataPoints() {
         log.info("getDailyDataPoints called ...");
 
-        String[] args = { apikey, lattitude, longitude };
+        Configuration configuration = this.getConfiguration();
+        String[] args = {configuration.getApikey(), configuration.getLattitude(), configuration.getLongitude()};
+
+//        String[] args = { apikey, lattitude, longitude };
         Forecast forecast = productLoader.runClient(args);
         Daily daily = forecast.getDaily();
         List<DailyDataPoint> dailyDataPointList = daily.getData();
@@ -50,4 +57,8 @@ public class WeatherServiceImpl implements WeatherService{
         }
         return dailyDataPointList ;
     }
+
+    private Configuration getConfiguration() {
+        return configurationService.getConfigurationById(1);
+    };
 }

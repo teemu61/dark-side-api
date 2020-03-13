@@ -46,6 +46,7 @@ public class WeatherRestController {
                 DailyDataPoint d = it.next();
                 dp.setTime(d.getTime().toEpochMilli());
                 dp.setTempHi(d.getApparentTemperatureHigh());
+                dp.setTempLo(d.getApparentTemperatureLow());
                 datapointList.add(dp);
             }
             return datapointList;
