@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+        console.log("document ready...")
+
+		$.ajax({
+			type : 'GET',
+			headers : {
+				Accept : "application/json; charset=utf-8",
+				"Content-Type" : "application/json; charset=utf-8"
+			},
+			url : '/api/datapoints',
+			success : function(result) {
+			    console.log("ajax success ...");
+                google.charts.load('current', {
+					'packages' : [ 'corechart' ]
+				});
+
+                var dataArray = [];
+    
+	    		$.each(result, function(i, obj) {
+                    var d = new Date(obj.time);
+			        console.log("time is: ", d + ", temp is: " +Math.round(obj.tempHi) );
+                    dataArray.push([ d, obj.tempHi ]);
+                });
+
+				google.charts.setOnLoadCallback(function() {
+					drawChart(dataArray);
+				});
+			}
+		});
+
+        function drawChart(dataArray) {
+            console.log("drawChart called... ",dataArray);
+            google.charts.load('current', {'packages':['corechart']});
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('datetime', 'Time');
+            data.addColumn('number', 'Temperature');
+            data.addRows(dataArray);
+
+            var options = {
+                title: 'Company Performance',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            chart.draw(data, options);
+        }
+    });
+    
+
+
+</script>
+<head lang="en">
+    <title>CGI Tests</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div id="curve_chart" style="width: 900px; height: 500px"></div>
+<!--<div class="container">
+    &lt;!&ndash;/*/ <th:block th:include="fragments/header :: header"></th:block> /*/&ndash;&gt;
+    <div>
+        <h2>Daily datapoints</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Time</th>
+                <th>Highest Temperature</th>
+                <th>Lowest Temperature</th>
+            </tr>
+            <tr th:each="datapoint : ${datapoints}">
+                <td th:text="${datapoint.time}">First name</td>
+                <td th:text="${datapoint.apparentTemperatureHigh}">Last name</td>
+                <td th:text="${datapoint.apparentTemperatureLow}">Last name</td>
+            </tr>
+        </table>
+    </div>
+</div>-->
+</body>
+</html>
