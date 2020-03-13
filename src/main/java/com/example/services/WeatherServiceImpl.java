@@ -41,11 +41,8 @@ public class WeatherServiceImpl implements WeatherService{
         log.info("getDailyDataPoints called ...");
 
         Configuration configuration = this.getConfiguration();
-        String[] args = {configuration.getApikey(), configuration.getLattitude(), configuration.getLongitude()};
+        Forecast forecast = this.getForecast(configuration);
 
-        Forecast forecast = this.runClient(args);
-
-        //Forecast forecast = productLoader.runClient(args);
         Daily daily = forecast.getDaily();
         List<DailyDataPoint> dailyDataPointList = daily.getData();
         Iterator<DailyDataPoint> it = dailyDataPointList.iterator();
@@ -61,14 +58,11 @@ public class WeatherServiceImpl implements WeatherService{
         return configurationService.getConfigurationById(1);
     };
 
-    public Forecast runClient(String[] args ) {
-        if (args.length != 3) {
-            System.err.println("Please provide yout API-Key and a Longitude / Latitrude combination. Usage as follows: '<your-secret-key> <longitude> <latitude>");
-            System.exit(1);
-        }
-        String apikey = args[0];
-        String latitude = args[1];
-        String longitude = args[2];
+    public Forecast getForecast(Configuration configuration ) {
+
+        String apikey = configuration.getApikey();
+        String latitude = configuration.getLattitude();
+        String longitude = configuration.getLongitude();
 
         ForecastRequest request = new ForecastRequestBuilder()
                 .key(new APIKey(apikey))
