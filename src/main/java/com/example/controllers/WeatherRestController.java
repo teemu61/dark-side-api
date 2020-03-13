@@ -46,6 +46,4 @@ public class WeatherRestController {
             }
             return datapointList;
     }
-
-
 }
