@@ -1,5 +1,6 @@
 package com.example.client;
 
+import org.springframework.stereotype.Service;
 import tk.plogitech.darksky.forecast.DarkSkyClient;
 import com.fasterxml.jackson.core.JsonParser;
 import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
@@ -23,7 +24,7 @@ import tk.plogitech.darksky.forecast.model.Latitude;
 import tk.plogitech.darksky.forecast.model.Longitude;
 import static tk.plogitech.darksky.forecast.util.Assert.notNull;
 
-
+@Service
 public class DarkSkyJacksonClient extends DarkSkyClient {
 
     private static final Logger logger = Logger.getLogger(DarkSkyJacksonClient.class.getSimpleName());

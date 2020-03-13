@@ -1,15 +1,10 @@
 package com.example.controllers;
 
 import com.example.domain.Datapoint;
-import com.example.domain.Education;
-import com.example.domain.Person;
-import com.example.services.PersonService;
 import com.example.services.WeatherService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import tk.plogitech.darksky.forecast.model.DailyDataPoint;
 

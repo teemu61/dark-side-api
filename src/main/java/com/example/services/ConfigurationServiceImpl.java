@@ -1,8 +1,6 @@
 package com.example.services;
 
 import com.example.domain.Configuration;
-import com.example.domain.Configuration;
-import com.example.repositories.ConfigurationRepository;
 import com.example.repositories.ConfigurationRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,4 +22,11 @@ public class ConfigurationServiceImpl implements ConfigurationService {
     public Configuration getConfigurationById(Integer id) {
         return configurationRepository.findById(id).orElse(null);
     }
+
+
+    @Override
+    public Configuration saveConfiguration(Configuration configuration) {
+        return configurationRepository.saveAndFlush(configuration);
+    }
+
 }
