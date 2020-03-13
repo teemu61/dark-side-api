@@ -47,10 +47,6 @@ public class WeatherServiceImpl implements WeatherService{
         List<DailyDataPoint> dailyDataPointList = daily.getData();
         Iterator<DailyDataPoint> it = dailyDataPointList.iterator();
 
-        while (it.hasNext()) {
-            DailyDataPoint point = it.next();
-            long time = point.getTime().toEpochMilli();
-        }
         return dailyDataPointList ;
     }
 
