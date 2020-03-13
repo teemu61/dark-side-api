@@ -3,6 +3,7 @@ package com.example.services;
 import com.example.bootstrap.ProductLoader;
 import com.example.client.DarkSkyJacksonClient;
 import com.example.domain.Configuration;
+import com.example.domain.Summary;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,19 @@ public class WeatherServiceImpl implements WeatherService{
         return dailyDataPointList ;
     }
 
+    public Summary getSummary() {
+
+        Configuration configuration = this.getConfiguration();
+        Forecast forecast = this.getForecast(configuration);
+
+        Daily daily = forecast.getDaily();
+        String description = daily.getSummary();
+        Summary summary = new Summary();
+        summary.setDescription(description);
+
+        return summary ;
+    }
+
     private Configuration getConfiguration() {
         return configurationService.getConfigurationById(1);
     };
@@ -62,6 +76,7 @@ public class WeatherServiceImpl implements WeatherService{
 
         ForecastRequest request = new ForecastRequestBuilder()
                 .key(new APIKey(apikey))
+                .language(ForecastRequestBuilder.Language.en)
                 .location(new GeoCoordinates(new Longitude(Double.valueOf(latitude)), new Latitude(Double.valueOf(longitude)))).build();
 
         DarkSkyJacksonClient client = new DarkSkyJacksonClient();

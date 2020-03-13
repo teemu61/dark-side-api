@@ -1,6 +1,7 @@
 package com.example.controllers;
 
 import com.example.domain.Datapoint;
+import com.example.domain.Summary;
 import com.example.services.WeatherService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,6 +34,14 @@ public class WeatherController {
         log.info("WeatherController called ... ");
         model.addAttribute("dum", "dum");
         return "datapoints";
+    }
+
+    @RequestMapping(value = "/api/summary", method = RequestMethod.GET)
+    public String getSummary(Model model) {
+
+        model.addAttribute("summary", weatherService.getSummary());
+        log.info("getSummary called ...");
+        return "summary";
     }
 
 }

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Weather Summary</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div>
+        <h2>Weather Summary</h2>
+        <p class="form-control-static" th:text="${summary.description}">Description</p>
+    </div>
+</div>
+
+</body>
+</html>
